@@ -316,34 +316,34 @@ const userController = require('../controllers/userController');
 
 //rutas sin autenticacion
 
-router.get('',userController.findAll);
-router.get('/:id', userController.findById);
-router.get('/username/:username', userController.findByUsername);
-router.get('/email/:email', userController.findByEmail);
-router.get('/rol/:rolId',userController.getByRole);
+// router.get('',userController.findAll);
+// router.get('/:id', userController.findById);
+// router.get('/username/:username', userController.findByUsername);
+// router.get('/email/:email', userController.findByEmail);
+// router.get('/rol/:rolId',userController.getByRole);
 
-router.post('/',userController.create);
-router.post('/login',userController.login);
-router.post('/logout',userController.logout);
+// router.post('/',userController.create);
+// router.post('/login',userController.login);
+// router.post('/logout',userController.logout);
 
-router.patch('/:id',userController.update);
-router.delete('/:id', userController.destroy);
+// router.patch('/:id',userController.update);
+// router.delete('/:id', userController.destroy);
 
 
 //Rutas con autenticacion
 
-// router.get('',requireAuth, requireAdminAuth,userController.findAll);
-// router.get('/:id',requireAuth, requireAdminAuth, userController.findById);
-// router.get('/username/:username',requireAuth,requireAdminAuth, userController.findByUsername);
-// router.get('/email/:email',requireAuth,requireAdminAuth, userController.findByEmail);
-// router.get('/rol/:rol',requireAuth,requireAdminAuth, userController.getByRole);
+router.get('',userController.findAll);
+router.get('/:id',requireAuth, requireAdminAuth, userController.findById);
+router.get('/username/:username',requireAuth,requireAdminAuth, userController.findByUsername);
+router.get('/email/:email',requireAuth,requireAdminAuth, userController.findByEmail);
+router.get('/rol/:rol',requireAuth,requireAdminAuth, userController.getByRole);
 
-// router.post('/',requireAuth, requireAdminAuth,userController.create);
-// router.post('/login',userController.login);
-// router.post('/logout',requireAuth,userController.logout);
+router.post('/',requireAuth, requireAdminAuth,userController.create);
+router.post('/login',userController.login);
+router.post('/logout',requireAuth,userController.logout);
 
-// router.patch('/:id',requireAuth,requireAdminAuth,userController.update);
-// router.delete('/:id',requireAuth,requireAdminAuth, userController.destroy);
+router.patch('/:id',requireAuth,requireAdminAuth,userController.update);
+router.delete('/:id',requireAuth,requireAdminAuth, userController.destroy);
 
 module.exports = router;
 

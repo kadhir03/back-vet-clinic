@@ -41,7 +41,7 @@ const requireAdminAuth = async (req, res, next) => {
     requireAuth(req, res, async () => {
         // Este código se ejecutará después de que `requireAuth` llame a `next()`
         // Asumiendo que `req.user` ya está establecido por `requireAuth`
-        if (req.user && req.user.rolId === 2) {
+        if (req.user && req.user.rolId === 1) {
             next();
         } else {
             return res.status(403).json({ error: 'Acceso denegado' });

@@ -164,27 +164,27 @@ const RoleController = require('../controllers/roleController');
  *         description: Error en el servidor
  */
 
-router.get('', RoleController.findAll);
-router.get('/:id', RoleController.findById);
-router.get('/name/:name', RoleController.findByname);
+// router.get('', RoleController.findAll);
+// router.get('/:id', RoleController.findById);
+// router.get('/name/:name', RoleController.findByname);
 
-router.post('/', RoleController.create);
+// router.post('/', RoleController.create);
 
-router.patch('/:id', RoleController.update);
-router.delete('/:id', RoleController.destroy);
+// router.patch('/:id', RoleController.update);
+// router.delete('/:id', RoleController.destroy);
 
 module.exports = router;
 
 //rutas con autenticacion
 
-// router.get('', requireAuth, requireAdminAuth, RoleController.findAll);
-// router.get('/:id', requireAuth, requireAdminAuth, RoleController.findById);
-// router.get('/name/:name', requireAuth, requireAdminAuth, RoleController.findByname);
+router.get('', requireAuth, requireAdminAuth, RoleController.findAll);
+ router.get('/:id', requireAuth, requireAdminAuth, RoleController.findById);
+router.get('/name/:name', requireAuth, requireAdminAuth, RoleController.findByname);
 
-// router.post('/', requireAuth, requireSAdminAuth, RoleController.create);
+ router.post('/', requireAuth, requireSAdminAuth, RoleController.create);
 
-// router.patch('/:id', requireAuth, requireSAdminAuth, RoleController.update);
-// router.delete('/:id', requireAuth, requireSAdminAuth, RoleController.destroy);
+router.patch('/:id', requireAuth, requireSAdminAuth, RoleController.update);
+ router.delete('/:id', requireAuth, requireSAdminAuth, RoleController.destroy);
 
 
 

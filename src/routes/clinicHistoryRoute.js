@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ClinicHistoryController = require('../controllers/clinicHistoryController');
+const { requireAuth, requireAdminAuth, requireSAdminAuth } = require('../middleware/authVer');
 
 /**
  * @swagger
@@ -146,12 +147,12 @@ const ClinicHistoryController = require('../controllers/clinicHistoryController'
  *         description: Error en el servidor
  */
 
-router.get('', ClinicHistoryController.findAll);
-router.get('/:id', ClinicHistoryController.findById);
+router.get('',requireAuth,requireAdminAuth, ClinicHistoryController.findAll);
+router.get('/:id',requireAuth,requireAdminAuth, ClinicHistoryController.findById);
 
-router.post('/', ClinicHistoryController.create);
+router.post('/',requireAuth,requireAdminAuth, ClinicHistoryController.create);
 
-router.patch('/:id', ClinicHistoryController.update);
-router.delete('/:id', ClinicHistoryController.destroy);
+router.patch('/:id',requireAuth,requireAdminAuth, ClinicHistoryController.update);
+router.delete('/:id',requireAuth,requireAdminAuth, ClinicHistoryController.destroy);
 
 module.exports = router;

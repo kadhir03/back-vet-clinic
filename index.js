@@ -37,9 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 //preguntar jhonatan
 app.use(cors({
-  origin: ' *', 
-    // origin: 'http://localhost:4200', 
-    // origin: 'https://vet-clinical.web.app'
+  origin: ' *'
 }));
 
 // Importación de rutas

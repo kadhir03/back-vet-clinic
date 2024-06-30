@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const HistoryDetailController = require('../controllers/historyDetailController.js');
-
+const { requireAuth, requireAdminAuth, requireSAdminAuth } = require('../middleware/authVer');
 /**
  * @swagger
  * components:
@@ -161,13 +161,13 @@ const HistoryDetailController = require('../controllers/historyDetailController.
  */
 
 
-router.get('', HistoryDetailController.findAll);
-router.get('/:id', HistoryDetailController.findById);
+router.get('',requireAuth,requireAdminAuth, HistoryDetailController.findAll);
+router.get('/:id',requireAuth,requireAdminAuth, HistoryDetailController.findById);
 
 
-router.post('/', HistoryDetailController.create);
+router.post('/',requireAuth,requireAdminAuth, HistoryDetailController.create);
 
-router.patch('/:id', HistoryDetailController.update);
-router.delete('/:id', HistoryDetailController.destroy);
+router.patch('/:id',requireAuth,requireAdminAuth, HistoryDetailController.update);
+router.delete('/:id',requireAuth,requireAdminAuth, HistoryDetailController.destroy);
 
 module.exports = router;

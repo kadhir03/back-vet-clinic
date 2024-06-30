@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { requireAuth, requireAdminAuth, requireSAdminAuth } = require('../middleware/authVer');
 const PetController = require('../controllers/petController');
 
 /**
@@ -193,12 +194,12 @@ const PetController = require('../controllers/petController');
  *         description: Error en el servidor
  */
 
-router.get('', PetController.findAll);
-router.get('/:id', PetController.findById);
-router.get('/name/:name', PetController.findByName);
+router.get('', requireAuth, requireAdminAuth, PetController.findAll);
+router.get('/:id', requireAuth, requireAdminAuth, PetController.findById);
+router.get('/name/:name', requireAuth, requireAdminAuth, PetController.findByName);
 router.get('/client/:clientId', PetController.findByClient);
-router.post('/', PetController.create);
-router.patch('/:id', PetController.update);
-router.delete('/:id', PetController.destroy);
+router.post('/', requireAuth, requireAdminAuth, PetController.create);
+router.patch('/:id', requireAuth, requireAdminAuth, PetController.update);
+router.delete('/:id', requireAuth, requireAdminAuth, PetController.destroy);
 
 module.exports = router;

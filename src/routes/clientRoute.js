@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ClientController = require('../controllers/clientController');
+const { requireAuth, requireAdminAuth, requireSAdminAuth } = require('../middleware/authVer');
 
 /**
  * @swagger
@@ -199,14 +200,14 @@ const ClientController = require('../controllers/clientController');
  */
 
 
-router.get('', ClientController.findAll);
-router.get('/:id', ClientController.findById);
-router.get('/name/:name', ClientController.findByNames);
-router.get('/document/:document', ClientController.findByDocument);
+router.get('',requireAuth,requireAdminAuth, ClientController.findAll);
+router.get('/:id',requireAuth,requireAdminAuth, ClientController.findById);
+router.get('/name/:name',requireAuth,requireAdminAuth, ClientController.findByNames);
+router.get('/document/:document',requireAuth,requireAdminAuth, ClientController.findByDocument);
 
-router.post('/', ClientController.create);
+router.post('/',requireAuth,requireAdminAuth, ClientController.create);
 
-router.patch('/:id', ClientController.update);
-router.delete('/:id', ClientController.destroy);
+router.patch('/:id',requireAuth,requireAdminAuth, ClientController.update);
+router.delete('/:id',requireAuth,requireAdminAuth, ClientController.destroy);
 
 module.exports = router;
