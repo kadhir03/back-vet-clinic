@@ -18,7 +18,7 @@ try {
     pool: {
       max: 5, // Número máximo de conexiones en el pool
       min: 0, // Número mínimo de conexiones en el pool
-      acquire: 30000, // Tiempo máximo en milisegundos para adquirir una conexión
+      acquire: 50000, // Tiempo máximo en milisegundos para adquirir una conexión
       idle: 10000, // Tiempo máximo en milisegundos que una conexión puede estar inactiva en el pool
     },
   });

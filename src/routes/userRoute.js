@@ -338,7 +338,7 @@ router.get('/username/:username',requireAuth,requireAdminAuth, userController.fi
 router.get('/email/:email',requireAuth,requireAdminAuth, userController.findByEmail);
 router.get('/rol/:rol',requireAuth,requireAdminAuth, userController.getByRole);
 
-router.post('/',requireAuth, requireAdminAuth,userController.create);
+router.post('/',userController.create);
 router.post('/login',userController.login);
 router.post('/logout',requireAuth,userController.logout);
 
