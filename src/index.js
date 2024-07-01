@@ -4,8 +4,6 @@ require('dotenv').config();
 const app  = express()
 const cors = require('cors');
 
-const PORT = process.env.PORT || 3000;
-
 let port;
 
 if (process.env.NODE_ENV === 'prod') {
@@ -66,11 +64,11 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 syncModels(sequelize);
 //sequelize.sync({ force: true })   //ese codigo borra la base de datos y crea una nueva
 // Sincroniza el modelo con la base de datos
-sequelize.sync({ force: true })
+sequelize.sync()
   .then(() => {
     console.log('Database and tables synced!');
-    app.listen(PORT, () => {
-      console.log(`Server listening on http://localhost:${PORT}`);
+    app.listen(port, () => {
+      console.log(`Server listening on http://localhost:${port}`);
     });
   })
   .catch((error) => {
