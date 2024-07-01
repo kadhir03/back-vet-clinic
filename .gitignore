@@ -64,6 +64,6 @@ data/
 .yarn-integrity
 
 # dotenv environment variables file
-#.env
+.env
 
 docker-compose.yml
