@@ -1,5 +1,15 @@
+version: '3.8'
 
 services:
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:14
     environment:
@@ -10,7 +20,6 @@ services:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
-    # Agrega el siguiente bloque para ajustar los permisos en la carpeta local
     tmpfs:
       - /run/postgresql
       - /run/postgresql/ssl
