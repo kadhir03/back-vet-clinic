@@ -66,7 +66,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 syncModels(sequelize);
 //sequelize.sync({ force: true })   //ese codigo borra la base de datos y crea una nueva
 // Sincroniza el modelo con la base de datos
-sequelize.sync()
+sequelize.sync({ force: true })
   .then(() => {
     console.log('Database and tables synced!');
     app.listen(port, () => {
