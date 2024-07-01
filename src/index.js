@@ -23,8 +23,8 @@ const swaggerUI = require('swagger-ui-express');
 const swaggerDocument = require('./swaggerOptions');
 
 
-const { sequelize } = require('./src/config/connection');
-const syncModels = require('./src/models/init/index.models');
+const { sequelize } = require('./config/connection');
+const syncModels = require('./models/init/index.models');
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
 /*
@@ -41,13 +41,13 @@ app.use(cors({
 }));
 
 // Importación de rutas
-const userRoute = require('./src/routes/userRoute');
-const roleRoute = require('./src/routes/roleRoute');
+const userRoute = require('./routes/userRoute');
+const roleRoute = require('./routes/roleRoute');
 
-const clientRoute = require('./src/routes/clientRoute');
-const clinicHistoryRoute = require('./src/routes/clinicHistoryRoute');
-const historyDetailRoute = require('./src/routes/historyDetailRoute');
-const petRoute = require('./src/routes/petRoute');
+const clientRoute = require('./routes/clientRoute');
+const clinicHistoryRoute = require('./routes/clinicHistoryRoute');
+const historyDetailRoute = require('./routes/historyDetailRoute');
+const petRoute = require('./routes/petRoute');
 
 
 // Configuración de rutas
