@@ -3,18 +3,19 @@ const express = require('express');
 require('dotenv').config();
 const app  = express()
 const cors = require('cors');
+PORT=3000;
 
-let port;
+// let port;
 
-if (process.env.NODE_ENV === 'prod') {
-    port = process.env.PORT_PROD;
-} else if (process.env.NODE_ENV === 'dev') {
-    port = process.env.PORT_DEV;
-} else if (process.env.NODE_ENV === 'test') {
-    port = process.env.PORT_TEST;
-} else {
-    port = 3000;
-}
+// if (process.env.NODE_ENV === 'prod') {
+//     port = process.env.PORT_PROD;
+// } else if (process.env.NODE_ENV === 'dev') {
+//     port = process.env.PORT_DEV;
+// } else if (process.env.NODE_ENV === 'test') {
+//     port = process.env.PORT_TEST;
+// } else {
+//     port = 3000;
+// }
 
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -64,11 +65,11 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 syncModels(sequelize);
 //sequelize.sync({ force: true })   //ese codigo borra la base de datos y crea una nueva
 // Sincroniza el modelo con la base de datos
-sequelize.sync()
+sequelize.sync({ force: true })
   .then(() => {
     console.log('Database and tables synced!');
-    app.listen(port, () => {
-      console.log(`Server listening on http://localhost:${port}`);
+    app.listen(PORT, () => {
+      console.log(`Server listening on http://localhost:${PORT}`);
     });
   })
   .catch((error) => {
