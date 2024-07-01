@@ -4,6 +4,8 @@ require('dotenv').config();
 const app  = express()
 const cors = require('cors');
 
+const PORT = process.env.PORT || 3000;
+
 let port;
 
 if (process.env.NODE_ENV === 'prod') {
@@ -67,8 +69,8 @@ syncModels(sequelize);
 sequelize.sync({ force: true })
   .then(() => {
     console.log('Database and tables synced!');
-    app.listen(port, () => {
-      console.log(`Server listening on http://localhost:${port}`);
+    app.listen(PORT, () => {
+      console.log(`Server listening on http://localhost:${PORT}`);
     });
   })
   .catch((error) => {
